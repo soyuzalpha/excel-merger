@@ -77,4 +77,3 @@ def merge_folder():
 
 if __name__ == "__main__":
     merge_folder()
-
