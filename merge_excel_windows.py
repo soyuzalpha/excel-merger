@@ -31,8 +31,12 @@ def merge_folder():
     new_wb.remove(new_wb.active)
 
     for filename in os.listdir(folder_path):
-        if filename.endswith(".xlsx") and not filename.startswith("~$") and not 
-filename.startswith("merged_"):
+
+        if (
+            filename.endswith(".xlsx")
+            and not filename.startswith("~$")
+            and not filename.startswith("merged_")
+        ):
 
             file_path = os.path.join(folder_path, filename)
 
@@ -58,12 +62,10 @@ filename.startswith("merged_"):
                             target_cell = target_sheet[cell.coordinate]
                             copy_cell(cell, target_cell)
 
-                    # Copy column width
                     for col in source_sheet.column_dimensions:
                         target_sheet.column_dimensions[col].width = \
                             source_sheet.column_dimensions[col].width
 
-                    # Copy merged cells
                     for merged_cell in source_sheet.merged_cells.ranges:
                         target_sheet.merge_cells(str(merged_cell))
 
